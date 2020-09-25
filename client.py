@@ -18,6 +18,7 @@ async def main():
         "exe_fn": sys.executable,
         "temp_dir": tempfile.gettempdir(),
         "home_dir": os.path.expanduser("~"),
+        **config,
     }
     async with websockets.connect(config["uri"]) as websocket:
         await websocket.send(json.dumps(reg_data))
