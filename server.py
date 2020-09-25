@@ -100,6 +100,8 @@ def handle_cmd(sys_idx, method, params):
         for fn in glob.iglob("scripts/*.py"):
             script_name = os.path.basename(fn)[:-3]
             print(script_name)
+    elif method == "info":
+        print(SOCKETS[sys_idx][1])
     elif sys_idx != -1:
         init_method, script = create_script_payload(method)
         send_async(SOCKETS[sys_idx][0], json.dumps({"script": script, "init_method": init_method, "args": params}))
