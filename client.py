@@ -3,6 +3,7 @@ import websockets
 import tempfile
 import platform
 import json
+import time
 import sys
 import os
 
@@ -36,4 +37,8 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.get_event_loop().run_until_complete(main())
+    while True:
+        try:
+            asyncio.get_event_loop().run_until_complete(main())
+        except:
+            time.sleep(30)

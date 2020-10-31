@@ -102,6 +102,8 @@ def handle_cmd(sys_idx, method, params):
             print(script_name)
     elif method == "info":
         print(SOCKETS[sys_idx][1])
+    elif method == "nick":
+        SOCKETS[sys_idx][1]["nick"] = params[0]
     elif sys_idx != -1:
         init_method, script = create_script_payload(method)
         send_async(SOCKETS[sys_idx][0], json.dumps({"script": script, "init_method": init_method, "args": params}))
