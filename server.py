@@ -39,8 +39,6 @@ async def handle_conn(websocket, path):
 
 
 def start_server_async():
-    queue
-
     def _start():
         asyncio.set_event_loop(asyncio.new_event_loop())
         start_server = websockets.serve(handle_conn, "0.0.0.0", 8765)
