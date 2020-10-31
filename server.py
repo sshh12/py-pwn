@@ -43,7 +43,7 @@ def start_server_async():
 
     def _start():
         asyncio.set_event_loop(asyncio.new_event_loop())
-        start_server = websockets.serve(handle_conn, "localhost", 8765)
+        start_server = websockets.serve(handle_conn, "0.0.0.0", 8765)
         asyncio.get_event_loop().run_until_complete(start_server)
         asyncio.get_event_loop().run_forever()
 
