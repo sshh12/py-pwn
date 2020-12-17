@@ -1,6 +1,6 @@
 # py-pwn
 
-> A super simple python-based [RAT](https://www.geeksforgeeks.org/introduction-to-rat-remote-administration-tool/).
+> A super simple Python-based [RAT](https://www.geeksforgeeks.org/introduction-to-rat-remote-administration-tool/).
 
 ## Usage
 
@@ -38,19 +38,20 @@ persist
 
 ## How It Works
 
-_As pseudo code_
+_As pseudo code..._
 
-### CLient
+### Client
 
-```
+```python
 conn = connect_to_server_websocket()
 while True:
-    eval(conn.read())
+    script, args = conn.read()
+    eval(script)(args)
 ```
 
 ### Server
 
-```
+```python
 server = run_websocket_server()
 while True:
     cmd = input(' > ')
